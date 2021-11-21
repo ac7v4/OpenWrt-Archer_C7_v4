@@ -70,7 +70,7 @@ jobs:
         git remote add upstream https://github.com/openwrt/openwrt.git
         git checkout -b my-merge-branch
         git fetch upstream pull/4036/head:ipq806x-5.10-dsa
-        git merge pull/4036/head
+        git merge ipq806x-5.10-dsa
 
     - name: Load custom feeds
       run: |

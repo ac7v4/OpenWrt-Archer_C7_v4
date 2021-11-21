@@ -12,6 +12,7 @@ name: Build OpenWrt
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
+  REPO_GIT: https://github.com/openwrt/openwrt.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: open.config
@@ -55,6 +56,8 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        git config --global user.email "ac7v4@liqunlock.ca"
+        git config --global user.name "GitHub Actions"
 
     - name: Clone source code
       working-directory: /workdir
@@ -63,16 +66,37 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Add PR 4036 https://github.com/openwrt/openwrt/pull/4036
-      working-directory: /workdir
+    - name: Add PR $REPO_URL/pull/4036
+      working-directory: /workdir/openwrt
       run: |
-        cd openwrt
-        git config user.email "ac7v4@liqunlock.ca"
-        git config user.name "GitHub Actions"
-        git remote add upstream https://github.com/openwrt/openwrt.git
+        git remote add upstream $REPO_GIT
         git checkout -b my-merge-branch
         git fetch upstream pull/4036/head:ipq806x-5.10-dsa
         git merge ipq806x-5.10-dsa
+
+    - name: Add PR $REPO_URL/pull/4528
+      working-directory: /workdir/openwrt
+      run: |
+        git remote add upstream $REPO_GIT
+        git checkout -b my-merge-branch
+        git fetch upstream pull/4528/head:qca8k-backport
+        git merge qca8k-backport
+
+    - name: Add PR $REPO_URL/pull/4622
+      working-directory: /workdir/openwrt
+      run: |
+        git remote add upstream $REPO_GIT
+        git checkout -b my-merge-branch
+        git fetch upstream pull/4622/head:ath79-dsa
+        git merge ath79-dsa
+
+    - name: Add PR $REPO_URL/pull/4562
+      working-directory: /workdir/openwrt
+      run: |
+        git remote add upstream $REPO_GIT
+        git checkout -b my-merge-branch
+        git fetch upstream pull/4562/head:dsa-qca8k-leds
+        git merge dsa-qca8k-leds
 
     - name: Load custom feeds
       run: |

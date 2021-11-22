@@ -1,5 +1,5 @@
-# OpenWrt firmware for Newifi D2
+# OpenWrt firmware for Archer C7 v4
 
-Auto build OpenWrt firmware for Newifi D2 via GitHub Actions
+Auto build OpenWrt firmware for Archer C7 v4 via GitHub Actions
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/P3TERX/OpenWrt-Newifi_D2?style=for-the-badge&label=Download)](https://github.com/P3TERX/OpenWrt-Newifi_D2/releases/latest)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/ac7v4/OpenWrt-Archer_C7_v4?style=for-the-badge&label=Download)](https://github.com/ac7v4/OpenWrt-Archer_C7_v4/releases/latest)

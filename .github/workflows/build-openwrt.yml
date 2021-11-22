@@ -72,6 +72,12 @@ jobs:
         git remote add upstream $REPO_GIT
         git checkout -b my-merge-branch
 
+    - name: Add PR $REPO_URL/pull/4619
+      working-directory: /workdir/openwrt
+      run: |
+        git fetch upstream pull/4619/head:ipq806x-5.10-dsa
+        git merge aparcar:k510-ath79
+
     - name: Add PR $REPO_URL/pull/4036
       working-directory: /workdir/openwrt
       run: |
@@ -125,18 +131,18 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: Download package
+      working-directory: /workdir/openwrt
       id: package
       run: |
-        cd openwrt
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile the firmware
+      working-directory: /workdir/openwrt
       id: compile
       run: |
-        cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "::set-output name=status::success"

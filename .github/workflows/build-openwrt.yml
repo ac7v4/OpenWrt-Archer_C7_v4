@@ -61,7 +61,6 @@ jobs:
       run: |
         git remote add upstream $REPO_GIT
         git checkout -b my-merge-branch
-        git fetch upstream pull/*
 
     - name: Add PR $REPO_URL/pull/4528
       working-directory: /workdir/openwrt

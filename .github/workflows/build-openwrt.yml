@@ -62,25 +62,25 @@ jobs:
         git remote add upstream $REPO_GIT
         git checkout -b my-merge-branch
 
-    - name: "Add PR#4528"
+    - name: "Add PR #4528"
       working-directory: /workdir/openwrt
       run: |
         git fetch upstream pull/4528/head:qca8k-backport
         git merge qca8k-backport
         
-    - name: Add PR#4562
+    - name: "Add PR #4562"
       working-directory: /workdir/openwrt
       run: |
         git fetch upstream pull/4562/head:dsa-qca8k-leds
         git merge dsa-qca8k-leds
     
-    - name: Add PR $REPO_URL/pull/4619
+    - name: "Add PR #4619"
       working-directory: /workdir/openwrt
       run: |
         git fetch upstream pull/4619/head:k510-ath79
         #resolve conflict
-        #mv target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch.bak
-        git commit -a --message "test"
+#       mv target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch.bak
+#       git commit -a --message "test"
         git merge k510-ath79
 
     #- name: Add PR $REPO_URL/pull/4622

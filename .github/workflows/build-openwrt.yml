@@ -83,7 +83,7 @@ jobs:
         #git add target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch
         #rm target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch
         git commit -a --message "test"
-        git merge --continue
+        git merge --continue --no-edit
 
     #- name: Add PR $REPO_URL/pull/4622
       #working-directory: /workdir/openwrt

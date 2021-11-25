@@ -96,11 +96,12 @@ jobs:
         git fetch upstream pull/4622/head:ath79-dsa
         git merge ath79-dsa
     
-    - name: "Add Pull Request #4036"
-      working-directory: /workdir/openwrt
-      run: |
-        git fetch upstream pull/4036/head:ipq806x-5.10-dsa
-        git merge ipq806x-5.10-dsa
+    # I don't think this is needed
+    #- name: "Add Pull Request #4036"
+      #working-directory: /workdir/openwrt
+      #run: |
+        #git fetch upstream pull/4036/head:ipq806x-5.10-dsa
+        #git merge ipq806x-5.10-dsa
 
     - name: Load custom feeds
       run: |

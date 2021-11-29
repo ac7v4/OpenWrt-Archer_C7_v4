@@ -77,13 +77,10 @@ jobs:
     - name: "Add Pull Request #4619"
       working-directory: /workdir/openwrt
       continue-on-error: true
-      run: | 
-
-        #mv target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch.bak
+      run: |
         git fetch upstream pull/4619/head:k510-ath79
-        #resolve conflict
-        #git add target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch
         git rm target/linux/ath79/patches-5.4/0032-MIPS-ath79-sanitize-symbols.patch
+        git rm target/linux/ath79/patches-5.4/910-unaligned_access_hacks.patch
         git commit -a --message "test"
         git merge k510-ath79
 
@@ -92,13 +89,6 @@ jobs:
       run: |
         git fetch upstream pull/4622/head:ath79-dsa
         git merge ath79-dsa
-    
-    # I don't think this is needed
-    #- name: "Add Pull Request #4036"
-      #working-directory: /workdir/openwrt
-      #run: |
-        #git fetch upstream pull/4036/head:ipq806x-5.10-dsa
-        #git merge ipq806x-5.10-dsa
 
     - name: Load custom feeds
       run: |
